@@ -1,9 +1,10 @@
 import React from 'react';
+import InfoHead from './InfoHead';
 
 class App extends React.Component{
     render(){
         return(
-            <div> Hello World</div>
+            <InfoHead/>
         );
     }
 };
