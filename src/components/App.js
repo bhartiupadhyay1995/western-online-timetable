@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from "./Components/Header";
+import Header from "./Header";
 import InfoHead from './InfoHead';
-import Search from "./Components/Search";
+import Search from "./Search";
 
 class App extends React.Component{
     render(){
