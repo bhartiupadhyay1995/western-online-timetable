@@ -1,0 +1,44 @@
+.info-head{
+    text-align: center;
+}
+
+.info-head .ui.card{
+    display: inline-flex;
+    height: 280px;
+    width: 30%;
+   
+}
+.info-head .ui.card:first-child{
+    background: #eeeef9;
+}
+
+.info-head .ui.card:last-child{
+    background: #e6f5e6;
+}
+
+.info-head .ui.card:nth-child(2){
+    margin: 0 3%;
+    background: #fffae9;
+}
+
+.hide{
+    display: none;
+}
+
+.info-head .show-detail{
+    display: block;
+}
+
+.info-head .ui.card.adjust-height{
+    height: auto;
+}
+
+.info-head .know-more{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.info-head .extra{
+    cursor: pointer;
+}

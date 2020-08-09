@@ -1,7 +1,5 @@
 import React from "react";
 import { Dropdown } from 'semantic-ui-react'
-import CourseCode from "./CourseCode";
-
 
 export default class Search extends React.Component {
 

@@ -52,9 +52,9 @@ class TableInfo extends React.Component {
             })
         }
 
-        if (!this.props.subjects) {
-            return <div>Loading....</div>
-        }
+        // if (!this.props.subjects) {
+        //     return <div>Loading....</div>
+        // }
     }
 
     render() {

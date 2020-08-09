@@ -8,12 +8,12 @@ import Search from "./Search";
 import getSchedule from '../service';
 
 class App extends React.Component{
-    state = { sujectResp: '' };
+    state = { sujectResp: '' , paginationInfo: ''};
 
      getSchedule = async (subjQUery) =>{
         const resp = await getSchedule({});
         this.setState({ sujectResp: resp.data.data.result })
-        console.log('RESp', this.state.sujectResp);
+        this.setState({ paginationInfo: resp.data.data.meta })
     }
 
     render(){
@@ -24,7 +24,7 @@ class App extends React.Component{
                 <Search onSubmit = {this.getSchedule}/>
                 <CourseInfo/>
                 <TableInfo subjects={this.state.sujectResp}/>
-                <PaginationComponent/>
+                <PaginationComponent pageInfo={this.state.paginationInfo}/>
             </div>
         );
     }
