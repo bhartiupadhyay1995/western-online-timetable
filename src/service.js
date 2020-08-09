@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export default async function getSchedule (){
-    return await axios.post('http://localhost:8080/getSchedule/2/4', {});
+export default async function getSchedule (req){
+    return await axios.post('http://localhost:8080/getSchedule/1/10', req);
 }

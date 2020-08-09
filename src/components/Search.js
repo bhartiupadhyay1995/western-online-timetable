@@ -16,13 +16,23 @@ export default class Search extends React.Component {
             days: [],
             start_times: [],
             end_times: [],
-            subjectChange:" ",
-            courseCodes:[]
+            subjectChange: " ",
+            courseCodes: [],
+            
+            subjectInfo: '',
+            componentInfo: '',
+            campuseInfo: '',
+            courseTypeInfo: '',
+            designationInfo: '',
+            daysInfo: [],
+            start_timeInfo: '',
+            end_timeInfo: '',
+            courseCodeInfo: ''
 
         }
     }
 
-  
+
 
     //Get all the data from getTimetableSchema api to get dispalayed in search components
     componentDidMount() {
@@ -89,38 +99,51 @@ export default class Search extends React.Component {
 
     }
 
-     handleOnChange = (e, data) => {
-         console.log(data.value);
+    handleOnChange = (e, data) => {
+        console.log(data.value);
         // this.setState({ subjectChange:data.value });
         // console.log(this.state.subjectChange);
+        this.setState({ subjectInfo: data.value });
+        fetch('http://localhost:8080/getCourseCode/' + data.value)
+            .then(res => res.json())
+            .then(json => {
+                this.setState({
+                    courseCodes: json.course_codes.map(code => (
+                        {
+                            key: code.course_code_id,
+                            text: code.description + " " + code.course_code_id,
+                            value: code.course_code_id
 
-        fetch('http://localhost:8080/getCourseCode/'+data.value)
-          .then(res => res.json())
-          .then(json => {
-            this.setState({
-                courseCodes: json.course_codes.map(code => (
-                    {
-                        key: code.course_code_id,
-                        text: code.description+" "+ code.course_code_id,
-                        value: code.course_code_id
+                        }))
+                    ,
+                })
+            }).catch((err) => {
+                console.log(err);
+            });
+    }
 
-                    }))
-                ,
-            })
-          }).catch((err) => {
-            console.log(err);
-        });
-     }
+    getCourseCode(subjectid) {
 
-     getCourseCode(subjectid){
-           
-     }
+    }
 
-
+    getQuerydata = () => {
+        const querydata = {
+            subject: this.state.subjectInfo,
+            start_time: this.state.start_timeInfo,
+            end_time: this.state.end_timeInfo,
+            campus: this.state.campuseInfo,
+            // days: timeTableInfoJson.day,
+            component: this.state.componentInfo,
+            course_code: this.state.courseCodeInfo,
+            designation: this.state.designationInfo,
+            // enrl_stat: "Not full"
+        }
+        this.props.onSubmit(querydata)
+    }
 
     render() {
-        const { subjects, components, campuses, courseTypes, designations, days, start_times, end_times,courseCodes } = this.state;
-    
+        const { subjects, components, campuses, courseTypes, designations, days, start_times, end_times, courseCodes } = this.state;
+
 
         return (
             <div class="ui center aligned basic segment">
@@ -128,13 +151,12 @@ export default class Search extends React.Component {
                     <div class="equal width fields">
                         <div class="field">
                             <label> Choose Subject</label>
-                            <Dropdown 
+                            <Dropdown
                                 placeholder='Select Country'
                                 search
                                 selection
                                 options={subjects}
                                 onChange={this.handleOnChange}
-
                             />
                         </div>
                         <div class="field">
@@ -144,7 +166,7 @@ export default class Search extends React.Component {
                                 search
                                 selection
                                 options={courseCodes}
-                                
+                                onChange={(e, data) => this.setState({ courseCodeInfo: data.value })}
                             />
                         </div>
                     </div>
@@ -156,6 +178,7 @@ export default class Search extends React.Component {
                                 search
                                 selection
                                 options={designations}
+                                onChange={(e, data) => this.setState({ designationInfo: data.value })}
                             />
                         </div>
 
@@ -167,6 +190,7 @@ export default class Search extends React.Component {
                                 search
                                 selection
                                 options={courseTypes}
+                                onChange={(e, data) => this.setState({ courseTypeInfo: data.value })}
                             />
                         </div>
                     </div>
@@ -180,6 +204,7 @@ export default class Search extends React.Component {
                                 search
                                 selection
                                 options={components}
+                                onChange={(e, data) => this.setState({ componentInfo: data.value })}
                             />
                         </div>
 
@@ -190,6 +215,7 @@ export default class Search extends React.Component {
                                 search
                                 selection
                                 options={campuses}
+                                onChange={(e, data) => this.setState({ campuseInfo: data.value })}
                             />
                         </div>
                     </div>
@@ -201,6 +227,7 @@ export default class Search extends React.Component {
                                 search
                                 selection
                                 options={start_times}
+                                onChange={(e, data) => this.setState({ start_timeInfo: data.value })}
                             />
                         </div>
 
@@ -211,6 +238,7 @@ export default class Search extends React.Component {
                                 search
                                 selection
                                 options={end_times}
+                                onChange={(e, data) => this.setState({ end_timeInfo: data.value })}
                             />
                         </div>
                     </div>
@@ -228,19 +256,17 @@ export default class Search extends React.Component {
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" class="hidden"  />
+                            <input type="checkbox" class="hidden" />
                             <label>Show only courses open for registration.
                         *Note: may not be an accurate reflection during paper add/drop.</label>
                         </div>
                     </div>
-                    <div class="ui teal labeled icon button">
+                    <div class="ui teal labeled icon button" onClick={this.getQuerydata}>
                         Submit
                 </div>
 
                 </form >
             </div>
-
-
         );
     }
 }

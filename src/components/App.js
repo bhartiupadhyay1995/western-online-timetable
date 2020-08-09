@@ -3,18 +3,27 @@ import Header from "./Header";
 import InfoHead from './InfoHead';
 import TableInfo from './Table';
 import CourseInfo from './CourseInfo';
-import PaginationComponent from './pagination';
+import PaginationComponent from './Pagination';
 import Search from "./Search";
+import getSchedule from '../service';
 
 class App extends React.Component{
+    state = { sujectResp: '' };
+
+     getSchedule = async (subjQUery) =>{
+        const resp = await getSchedule({});
+        this.setState({ sujectResp: resp.data.data.result })
+        console.log('RESp', this.state.sujectResp);
+    }
+
     render(){
         return(
             <div className="App">
                 <Header/>
                 <InfoHead/>
-                <Search/>
+                <Search onSubmit = {this.getSchedule}/>
                 <CourseInfo/>
-                <TableInfo/>
+                <TableInfo subjects={this.state.sujectResp}/>
                 <PaginationComponent/>
             </div>
         );

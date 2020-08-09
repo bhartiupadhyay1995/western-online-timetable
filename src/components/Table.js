@@ -1,20 +1,12 @@
 import React from 'react';
 import { Icon, Table, Item } from 'semantic-ui-react';
-import getSchedule from '../service';
 import '../styles/Table.css';
 import CourseInfo from './CourseInfo';
 
 class TableInfo extends React.Component {
-    state = { sujectResp: '' };
-
-    async componentDidMount() {
-        const resp = await getSchedule();
-        this.setState({ sujectResp: resp.data.data.result }) 
-    }
-
     renderContent(){
-        if (this.state.sujectResp) {
-            return this.state.sujectResp.map((subject) => {
+        if (this.props.subjects) {
+            return this.props.subjects.map((subject) => {
                 return <div className="course-table" key={`${subject.subject}_${subject.catalog_nbr}`}>
                     <CourseInfo subjectInfo={`${subject.subject} ${subject.catalog_nbr} - ${subject.className}`} description={subject.catalog_description}/>
                     <Table celled structured>
@@ -60,7 +52,7 @@ class TableInfo extends React.Component {
             })
         }
 
-        if (!this.state.sujectResp) {
+        if (!this.props.subjects) {
             return <div>Loading....</div>
         }
     }
