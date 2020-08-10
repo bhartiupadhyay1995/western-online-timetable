@@ -3,7 +3,7 @@ import Header from "./Header";
 import InfoHead from './InfoHead';
 import TableInfo from './Table';
 import CourseInfo from './CourseInfo';
-import PaginationComponent from './Pagination';
+import PaginationComponent from './pagination';
 import Search from "./Search";
 import getSchedule from '../service';
 
