@@ -10,8 +10,8 @@ import getSchedule from '../service';
 class App extends React.Component{
     state = { sujectResp: '' , paginationInfo: ''};
 
-     getSchedule = async (subjQUery) =>{
-        const resp = await getSchedule({});
+     getSchedule = async (subjQuery) =>{
+        const resp = await getSchedule(subjQuery);
         this.setState({ sujectResp: resp.data.data.result })
         this.setState({ paginationInfo: resp.data.data.meta })
     }

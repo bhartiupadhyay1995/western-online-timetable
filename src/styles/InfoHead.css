@@ -9,11 +9,11 @@
    
 }
 .info-head .ui.card:first-child{
-    background: #eeeef9;
+    background: #efeff7;
 }
 
 .info-head .ui.card:last-child{
-    background: #e6f5e6;
+    background: #efffef;
 }
 
 .info-head .ui.card:nth-child(2){

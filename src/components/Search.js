@@ -253,7 +253,7 @@ export default class Search extends React.Component {
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" class="hidden" />
+                            <input type="checkbox"  />
                             <label>Show only courses open for registration.
                         *Note: may not be an accurate reflection during paper add/drop.</label>
                         </div>

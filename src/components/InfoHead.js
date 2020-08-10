@@ -21,7 +21,7 @@ class InfoHead extends React.Component{
                     </div>
                     <div class="extra content">
                         <i class="linkify icon"></i>
-                             Western's COVID-19 website
+                        <a href='https://www.uwo.ca/coronavirus/students.html'> Western's COVID-19 website </a>
                     </div>
                 </div>
     
@@ -48,7 +48,7 @@ class InfoHead extends React.Component{
                     </div>
                     <div class="extra content">
                         <i class="linkify icon"></i>
-                        COVID-19 (Coronavirus)
+                        <a href='https://www.uwo.ca/coronavirus/'> COVID-19 (Coronavirus) </a>
                      </div>
                 </div>
     
@@ -62,7 +62,7 @@ class InfoHead extends React.Component{
                     </div>
                     <div class="extra content">
                         <i class="linkify icon"></i>
-                        Western's remote proctoring website 
+                        <a href='https://remoteproctoring.uwo.ca/'>Western's remote proctoring website </a>
                     </div>
                 </div>
             </div>
