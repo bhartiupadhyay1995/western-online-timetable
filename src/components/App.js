@@ -12,8 +12,7 @@ class App extends React.Component{
 
      getSchedule = async (subjQuery) =>{
         const resp = await getSchedule(subjQuery);
-        this.setState({ sujectResp: resp.data.data.result })
-        this.setState({ paginationInfo: resp.data.data.meta })
+        this.setState({ sujectResp: resp.data.data.result,  paginationInfo: resp.data.data.meta})
     }
 
     render(){

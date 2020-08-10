@@ -136,6 +136,11 @@ export default class Search extends React.Component {
             designation: this.state.designationInfo,
             // enrl_stat: "Not full"
         }
+        for(const property in querydata){
+            if(property === ''){
+                delete querydata[property];
+            }
+        }
         this.props.onSubmit(querydata)
     }
 
