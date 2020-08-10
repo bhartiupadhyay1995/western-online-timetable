@@ -15,8 +15,7 @@ export default class Search extends React.Component {
             start_times: [],
             end_times: [],
             subjectChange: " ",
-            courseCodes: [],
-            
+            courseCodes: [],          
             subjectInfo: '',
             componentInfo: '',
             campuseInfo: '',
@@ -34,11 +33,11 @@ export default class Search extends React.Component {
 
     //Get all the data from getTimetableSchema api to get dispalayed in search components
     componentDidMount() {
-        fetch('http://localhost:8080/getTimetableSchema')
+        fetch('http://localhost:8080/timetable/getTimetableSchema')
             .then(res => res.json())
             .then(json => {
                 this.setState({
-                    subjects: json.schema.subject.map(subject => (
+                    subjects: json.timeTableInfoJson.subject.map(subject => (
                         {
                             key: subject.subject_id,
                             text: subject.subject_value,
@@ -46,43 +45,43 @@ export default class Search extends React.Component {
 
                         }))
                     ,
-                    components: json.schema.Component.map(component => (
+                    components: json.timeTableInfoJson.Component.map(component => (
                         {
                             key: component.Component_id,
                             text: component.Component_value,
                             value: component.Component_value,
 
                         })),
-                    campuses: json.schema.Campus.map(campus => (
+                    campuses: json.timeTableInfoJson.Campus.map(campus => (
                         {
                             key: campus.Campus_id,
                             text: campus.Campus_value,
                             value: campus.Campus_value,
 
                         })),
-                    courseTypes: json.schema.CourseType.map(courseType => (
+                    courseTypes: json.timeTableInfoJson.CourseType.map(courseType => (
                         {
                             key: courseType.CourseType_id,
                             text: courseType.CourseType_value,
                             value: courseType.CourseType_value,
 
                         })),
-                    designations: json.schema.Designation.map(Designation => (
+                    designations: json.timeTableInfoJson.Designation.map(Designation => (
                         {
                             key: Designation.Designation_id,
                             text: Designation.Designation_value,
                             value: Designation.Designation_value,
 
                         })),
-                    days: json.schema.day,
-                    start_times: json.schema.start_time.map((start, index) => (
+                    days: json.timeTableInfoJson.day,
+                    start_times: json.timeTableInfoJson.start_time.map((start, index) => (
                         {
                             key: index,
                             text: start,
                             value: start,
 
                         })),
-                    end_times: json.schema.end_time.map((end, index) => (
+                    end_times: json.timeTableInfoJson.end_time.map((end, index) => (
                         {
                             key: index,
                             text: end,
@@ -102,7 +101,7 @@ export default class Search extends React.Component {
         // this.setState({ subjectChange:data.value });
         // console.log(this.state.subjectChange);
         this.setState({ subjectInfo: data.value });
-        fetch('http://localhost:8080/getCourseCode/' + data.value)
+        fetch('http://localhost:8080/timetable/getCourseCode/' + data.value)
             .then(res => res.json())
             .then(json => {
                 this.setState({
@@ -259,7 +258,7 @@ export default class Search extends React.Component {
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" class="hidden" />
+                            <input type="checkbox"  />
                             <label>Show only courses open for registration.
                         *Note: may not be an accurate reflection during paper add/drop.</label>
                         </div>
