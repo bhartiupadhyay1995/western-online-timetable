@@ -136,7 +136,7 @@ export default class Search extends React.Component {
             // enrl_stat: "Not full"
         }
         for(const property in querydata){
-            if(property === ''){
+            if(querydata[property] === ''){
                 delete querydata[property];
             }
         }

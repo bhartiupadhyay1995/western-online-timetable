@@ -8,11 +8,18 @@ import Search from "./Search";
 import getSchedule from '../service';
 
 class App extends React.Component{
+    query = {};
+
     state = { sujectResp: '' , paginationInfo: ''};
 
-     getSchedule = async (subjQuery) =>{
-        const resp = await getSchedule(subjQuery);
+     getSchedule = async (subjQuery, page) => {
+        this.query =  subjQuery;
+        const resp = await getSchedule(subjQuery, page);
         this.setState({ sujectResp: resp.data.data.result,  paginationInfo: resp.data.data.meta})
+    }
+
+    handlePagination = (page)=>{
+        this.getSchedule(this.query, page);
     }
 
     render(){
@@ -23,7 +30,7 @@ class App extends React.Component{
                 <Search onSubmit = {this.getSchedule}/>
                 <CourseInfo/>
                 <TableInfo subjects={this.state.sujectResp}/>
-                <PaginationComponent pageInfo={this.state.paginationInfo}/>
+                <PaginationComponent pageInfo={this.state.paginationInfo} onChange={this.handlePagination}/>
             </div>
         );
     }
