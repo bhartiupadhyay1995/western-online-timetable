@@ -42,7 +42,7 @@ class TableInfo extends React.Component {
                                 <Table.Cell textAlign='center'>{subject.course_info[0].end_time}</Table.Cell>
                                 <Table.Cell textAlign='center'>{subject.course_info[0].days.toString()}</Table.Cell>
                                 <Table.Cell textAlign='center'>{subject.course_info[0].instructors.length > 0 ? subject.course_info[0].instructors.toString() : 'Not Assigned'}</Table.Cell>
-                                <Table.Cell textAlign='center'>{subject.course_info[0].enrl_stat === 'Not full' ? <Icon color='green' name='checkmark' size='large' /> : <Icon color='red' name='cross' size='large' />}</Table.Cell>
+                                <Table.Cell textAlign='center'>{subject.course_info[0].enrl_stat === 'Not full' ? <Icon color='green' name='checkmark' size='large' /> : <Icon color='red' name='delete' size='large' />}</Table.Cell>
                                 <Table.Cell textAlign='center'>{subject.course_info[0].campus}</Table.Cell>
                                 <Table.Cell className='course-desc'>{subject.course_info[0].descr ? subject.course_info[0].descr : 'Not Available'}</Table.Cell>
                             </Table.Row>
