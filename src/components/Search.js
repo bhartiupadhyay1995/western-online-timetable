@@ -160,8 +160,7 @@ export default class Search extends React.Component {
 
         return (
             <form class="ui form">
-                <h1 class="ui center aligned header">Search</h1>
-                <div class="ui two column stackable grid container">
+                <div class="ui four column stackable grid container">
                     <div class="column">
                         <h4> Subject:</h4>
                         <Dropdown
@@ -276,7 +275,7 @@ export default class Search extends React.Component {
 
 
                     <div class="row" >
-                        <button class="ui teal labeled icon button" onClick={this.getQuerydata}>Submit</button>
+                        <button class="ui teal labeled icon button" onClick={this.getQuerydata}>SUBMIT</button>
                     </div>
                 </div>
             </form >
