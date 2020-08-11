@@ -132,7 +132,8 @@ export default class Search extends React.Component {
         this.setState({enrollInfo: e.target.checked})
     }
 
-    getQuerydata = () => {
+    getQuerydata = (e) => {
+        e.preventDefault();
         const querydata = {
             subject: this.state.subjectInfo,
             start_time: this.state.start_timeInfo,
