@@ -1,6 +1,11 @@
 import React from "react";
 import { Dropdown,Checkbox } from 'semantic-ui-react'
 import '../styles/search.css';
+import CardCarousel from "./CardCarousel";
+
+
+
+
 
 
 export default class Search extends React.Component {
@@ -205,15 +210,18 @@ export default class Search extends React.Component {
                         />
                     </div>
                     <div class="column">
-                        <h4> Campus</h4>
-                        <Dropdown
+                    <h4> Campus</h4>
+                    <CardCarousel />
+
+                        
+                        {/* <Dropdown
                             placeholder='Select Campus'
                             fluid
                             search
                             selection
                             options={campuses}
                             onChange={(e, data) => this.setState({ campuseInfo: data.value })}
-                        />
+                        /> */}
                     </div>
                     <div class="column">
                         <h4> Start Time</h4>
@@ -259,6 +267,8 @@ export default class Search extends React.Component {
                     </div>
 
                 </div>
+
+
 
 
             </form >
