@@ -1,5 +1,10 @@
 import React from "react";
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown,Checkbox } from 'semantic-ui-react'
+import '../styles/search.css';
+import CardCarousel from "./CardCarousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
+
+
 
 export default class Search extends React.Component {
 
@@ -15,7 +20,7 @@ export default class Search extends React.Component {
             start_times: [],
             end_times: [],
             subjectChange: " ",
-            courseCodes: [],          
+            courseCodes: [],
             subjectInfo: '',
             componentInfo: '',
             campuseInfo: '',
@@ -153,119 +158,111 @@ export default class Search extends React.Component {
 
 
         return (
-            <div class="ui center aligned basic segment">
-                <form class="ui form">
-                    <div class="equal width fields">
-                        <div class="field">
-                            <label> Choose Subject</label>
-                            <Dropdown
-                                placeholder='Select Country'
-                                search
-                                selection
-                                options={subjects}
-                                onChange={this.handleOnChange}
-                            />
-                        </div>
-                        <div class="field">
-                            <label> Choose Course Number:</label>
-                            <Dropdown
-                                placeholder='Select Country'
-                                search
-                                selection
-                                options={courseCodes}
-                                onChange={(e, data) => this.setState({ courseCodeInfo: data.value })}
-                            />
-                        </div>
+            <form class="ui form">
+                <h1 class="ui center aligned header">Search</h1>
+                <div class="ui two column stackable grid container">
+                    <div class="column">
+                        <h4> Subject:</h4>
+                        <Dropdown
+                            placeholder='Choose Subject'
+                            fluid
+                            search
+                            selection
+                            options={subjects}
+                            onChange={this.handleOnChange}
+                        />
                     </div>
-                    <div class="equal width fields">
-                        <div class="field">
-                            <label>Course Suffix</label>
-                            <Dropdown
-                                placeholder='Select Country'
-                                search
-                                selection
-                                options={designations}
-                                onChange={(e, data) => this.setState({ designationInfo: data.value })}
-                            />
-                        </div>
-
-
-                        <div class="field">
-                            <label>Course Delivery</label>
-                            <Dropdown
-                                placeholder='Select Country'
-                                search
-                                selection
-                                options={courseTypes}
-                                onChange={(e, data) => this.setState({ courseTypeInfo: data.value })}
-                            />
-                        </div>
+                    <div class="column">
+                        <h4> Course Number:</h4>
+                        <Dropdown
+                            placeholder='Select Course Number'
+                            fluid
+                            search
+                            selection
+                            options={courseCodes}
+                            onChange={(e, data) => this.setState({ courseCodeInfo: data.value })}
+                        />
                     </div>
 
-                    <div class="equal width fields">
-
-                        <div class="field">
-                            <label>Component</label>
-                            <Dropdown
-                                placeholder='Select Country'
-                                search
-                                selection
-                                options={components}
-                                onChange={(e, data) => this.setState({ componentInfo: data.value })}
-                            />
-                        </div>
-
-                        <div class="field">
-                            <label>Campus</label>
-                            <Dropdown
-                                placeholder='Select Country'
-                                search
-                                selection
-                                options={campuses}
-                                onChange={(e, data) => this.setState({ campuseInfo: data.value })}
-                            />
-                        </div>
+                    <div class="column">
+                        <h4> Course Suffix:</h4>
+                        <Dropdown
+                            placeholder='Select Course Suffix'
+                            fluid
+                            search
+                            selection
+                            options={designations}
+                            onChange={(e, data) => this.setState({ designationInfo: data.value })}
+                        />
                     </div>
-                    <div class="equal width fields">
-                        <div class="field">
-                            <label>Start Time</label>
-                            <Dropdown
-                                placeholder='Select Country'
-                                search
-                                selection
-                                options={start_times}
-                                onChange={(e, data) => this.setState({ start_timeInfo: data.value })}
-                            />
-                        </div>
-
-                        <div class="field">
-                            <label>End Time</label>
-                            <Dropdown
-                                placeholder='Select Country'
-                                search
-                                selection
-                                options={end_times}
-                                onChange={(e, data) => this.setState({ end_timeInfo: data.value })}
-                            />
-                        </div>
+                    <div class="column">
+                        <h4> Course Delivery:</h4>
+                        <Dropdown
+                            placeholder='Select Course Delivery'
+                            fluid
+                            search
+                            selection
+                            options={courseTypes}
+                            onChange={(e, data) => this.setState({ courseTypeInfo: data.value })}
+                        />
                     </div>
-                    <div class="inline fields">
-                        <label>Day of Class</label>
-
-                        <div class="field" >
-                            {days.map((day, index) => (
-                                <label key={index}>
-                                    <input type="checkbox" key={"inputDay" + index} 
-                                    onChange={this.updateDays}
-                                    value = {day}
-                                    /> 
-                                    {day}
-                                    <span> &nbsp;</span>
-                                </label>
-                            ))}
-                        </div>
+                    <div class="column">
+                        <h4> Component</h4>
+                        <Dropdown
+                            placeholder='Select Component'
+                            fluid
+                            search
+                            selection
+                            options={components}
+                            onChange={(e, data) => this.setState({ componentInfo: data.value })}
+                        />
                     </div>
-                    <div class="field">
+                    <div class="column">
+                    <h4> Campus</h4>
+                    <CardCarousel />
+
+                        
+                        {/* <Dropdown
+                            placeholder='Select Campus'
+                            fluid
+                            search
+                            selection
+                            options={campuses}
+                            onChange={(e, data) => this.setState({ campuseInfo: data.value })}
+                        /> */}
+                    </div>
+                    <div class="column">
+                        <h4> Start Time</h4>
+                        <Dropdown
+                            placeholder='Select Start Time'
+                            fluid
+                            search
+                            selection
+                            options={start_times}
+                            onChange={(e, data) => this.setState({ start_timeInfo: data.value })}
+                        />
+                    </div>
+                    <div class="column">
+                        <h4> End Time</h4>
+                        <Dropdown
+                            placeholder='Select End Time'
+                            fluid
+                            search
+                            selection
+                            options={end_times}
+                            onChange={(e, data) => this.setState({ end_timeInfo: data.value })}
+                        />
+                    </div>
+                    <div class="column">
+                        <h4>Day of Class</h4>
+                        {days.map((day, index) => (
+                            <Checkbox label={{ children: day }} 
+                            onChange={this.updateDays}
+                            value = {day}/>
+                        ))}
+                    </div>
+
+                    <div class="column">
                         <div class="ui checkbox">
                             <input type="checkbox"  
                             onChange={this.controlEnrollStatus}
@@ -275,12 +272,14 @@ export default class Search extends React.Component {
                         *Note: may not be an accurate reflection during paper add/drop.</label>
                         </div>
                     </div>
-                    <div class="ui teal labeled icon button" onClick={this.getQuerydata}>
-                        Submit
-                </div>
 
-                </form >
-            </div>
+
+                    <div class="row" >
+                        <button class="ui teal labeled icon button" onClick={this.getQuerydata}>Submit</button>
+                    </div>
+                </div>
+            </form >
+
         );
     }
 }
