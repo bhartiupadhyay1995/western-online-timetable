@@ -6,10 +6,6 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 
 
 
-
-
-
-
 export default class Search extends React.Component {
 
     constructor() {

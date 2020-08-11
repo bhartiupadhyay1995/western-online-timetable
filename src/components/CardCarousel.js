@@ -7,11 +7,10 @@ import logo1 from '../images/Huron.jpg'
 import logo2 from '../images/western.jpg'
 
 
-
 const CardCarousel = () => (
   <CarouselProvider
     naturalSlideWidth={1}
-    naturalSlideHeight={1.25}
+    naturalSlideHeight={1}
     totalSlides={3}
     style={{ width: "200px" }}
   >
@@ -24,13 +23,13 @@ const CardCarousel = () => (
       />
       <CustomCardSlide
         header="Western"
-        image={logo2}
+        image={logo1}
         index={1}
       
       />
       <CustomCardSlide
         header="Kings"
-        image={logo2}
+        image={logo1}
         index={2}
       />
     </Slider>
