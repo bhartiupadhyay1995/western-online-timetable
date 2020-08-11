@@ -3,7 +3,7 @@ import { Dropdown,Checkbox } from 'semantic-ui-react'
 import '../styles/search.css';
 import CardCarousel from "./CardCarousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-
+import logo1 from '../images/Huron.jpg'
 
 
 export default class Search extends React.Component {
@@ -29,7 +29,8 @@ export default class Search extends React.Component {
             daysInfo: [],
             start_timeInfo: '',
             end_timeInfo: '',
-            courseCodeInfo: ''
+            courseCodeInfo: '',
+            
 
         }
     }
@@ -62,6 +63,7 @@ export default class Search extends React.Component {
                             key: campus.Campus_id,
                             text: campus.Campus_value,
                             value: campus.Campus_value,
+                            image: {avatar: true, src:logo1}
 
                         })),
                     courseTypes: json.timeTableInfoJson.CourseType.map(courseType => (
@@ -102,7 +104,6 @@ export default class Search extends React.Component {
     }
 
     handleOnChange = (e, data) => {
-        console.log(data.value);
         // this.setState({ subjectChange:data.value });
         // console.log(this.state.subjectChange);
         this.setState({ subjectInfo: data.value });
@@ -145,8 +146,7 @@ export default class Search extends React.Component {
 
     render() {
         const { subjects, components, campuses, courseTypes, designations, days, start_times, end_times, courseCodes } = this.state;
-
-
+        console.log(logo1);
         return (
             <form class="ui form">
                 <h1 class="ui center aligned header">Search</h1>
@@ -170,6 +170,7 @@ export default class Search extends React.Component {
                             search
                             selection
                             options={courseCodes}
+                            
                             onChange={(e, data) => this.setState({ courseCodeInfo: data.value })}
                         />
                     </div>
@@ -258,7 +259,6 @@ export default class Search extends React.Component {
                         *Note: may not be an accurate reflection during paper add/drop.</label>
                         </div>
                     </div>
-
 
                     <div class="row" >
                         <button class="ui teal labeled icon button" onClick={this.getQuerydata}>Submit</button>
