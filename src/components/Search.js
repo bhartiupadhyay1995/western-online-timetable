@@ -219,17 +219,17 @@ export default class Search extends React.Component {
                     </div>
                     <div class="column">
                     <h4> Campus</h4>
-                    <CardCarousel />
+                    {/* <CardCarousel /> */}
 
                         
-                        {/* <Dropdown
+                        <Dropdown
                             placeholder='Select Campus'
                             fluid
                             search
                             selection
                             options={campuses}
                             onChange={(e, data) => this.setState({ campuseInfo: data.value })}
-                        /> */}
+                        />
                     </div>
                     <div class="column">
                         <h4> Start Time</h4>
