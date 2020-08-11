@@ -2,6 +2,8 @@ import React from "react";
 import { Dropdown,Checkbox } from 'semantic-ui-react'
 import '../styles/search.css';
 import CardCarousel from "./CardCarousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
+
 
 
 
