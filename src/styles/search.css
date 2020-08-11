@@ -2,8 +2,6 @@
     text-align: center;
 }
 
-
-
 .column {
     width: 50%;
 }
@@ -12,9 +10,9 @@
         margin-bottom: -1rem;
         margin-left: -1rem;
         margin-right: -1rem;
-        border: 2px solid purple;
+        border: 2px solid rgb(87, 32, 87);
         border-radius: 4px;
-        background: #a7a6f0;
+        background: #72405a;
 
     }
 

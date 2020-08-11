@@ -239,6 +239,7 @@ export default class Search extends React.Component {
                     </div>
                     <div class="column">
                         <h4>Day of Class</h4>
+
                         {days.map((day, index) => (
                             <Checkbox label={{ children: day }} />
                         ))}
