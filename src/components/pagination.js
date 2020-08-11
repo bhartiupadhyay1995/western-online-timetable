@@ -9,7 +9,6 @@ const PaginationComponent = (props) => {
     const currentPage = pageInfo.activePage
     setActivePage(pageInfo.activePage);
     props.onChange(currentPage);
-    console.log('PAGE CHANGE', currentPage);
   }
 
   if(props.pageInfo.count > 0){

@@ -24,12 +24,12 @@ export default class Search extends React.Component {
             daysInfo: [],
             start_timeInfo: '',
             end_timeInfo: '',
-            courseCodeInfo: ''
-
-        }
+            courseCodeInfo: '',
+            enrollInfo: true
+        } 
     }
 
-
+    days = []
 
     //Get all the data from getTimetableSchema api to get dispalayed in search components
     componentDidMount() {
@@ -119,8 +119,12 @@ export default class Search extends React.Component {
             });
     }
 
-    getCourseCode(subjectid) {
+    updateDays = (e) => {
+        this.days.push(e.target.value);
+    }
 
+    controlEnrollStatus = (e) => {
+        this.setState({enrollInfo: e.target.checked})
     }
 
     getQuerydata = () => {
@@ -129,14 +133,15 @@ export default class Search extends React.Component {
             start_time: this.state.start_timeInfo,
             end_time: this.state.end_timeInfo,
             campus: this.state.campuseInfo,
-            // days: timeTableInfoJson.day,
+            days:this.days,
             component: this.state.componentInfo,
             course_code: this.state.courseCodeInfo,
             designation: this.state.designationInfo,
-            // enrl_stat: "Not full"
         }
+
+        if(!this.state.enrollInfo) querydata['enrl_stat'] = 'Full';
         for(const property in querydata){
-            if(querydata[property] === ''){
+            if(querydata[property] === '' || querydata[property].length === 0){
                 delete querydata[property];
             }
         }
@@ -250,7 +255,11 @@ export default class Search extends React.Component {
                         <div class="field" >
                             {days.map((day, index) => (
                                 <label key={index}>
-                                    <input type="checkbox" key={"inputDay" + index} /> {day}
+                                    <input type="checkbox" key={"inputDay" + index} 
+                                    onChange={this.updateDays}
+                                    value = {day}
+                                    /> 
+                                    {day}
                                     <span> &nbsp;</span>
                                 </label>
                             ))}
@@ -258,7 +267,10 @@ export default class Search extends React.Component {
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox"  />
+                            <input type="checkbox"  
+                            onChange={this.controlEnrollStatus}
+                            checked={this.state.enrollInfo}
+                            />
                             <label>Show only courses open for registration.
                         *Note: may not be an accurate reflection during paper add/drop.</label>
                         </div>

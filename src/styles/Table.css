@@ -27,3 +27,13 @@
 .course-table .table{
     color: #6b6b6b;
 }
+
+.no-results{
+    text-align: center;
+    background: #ecd8d8;
+    padding: 25px;
+    font-size: 25px;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    color: #6b6b6b;
+}
