@@ -31,9 +31,8 @@ class App extends React.Component{
                 <Header/>
                 <InfoHead/>
                 <Search onSubmit = {this.getSchedule}/>
-                <CourseInfo/>
                 <ShimmerLoader loading={this.state.loading}/>
-                <TableInfo subjects={this.state.sujectResp}/>
+                <TableInfo subjects={this.state.sujectResp}><CourseInfo/></TableInfo>
                 <PaginationComponent pageInfo={this.state.paginationInfo} onChange={this.handlePagination}/>
             </div>
         );

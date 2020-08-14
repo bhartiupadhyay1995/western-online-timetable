@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item } from 'semantic-ui-react';
+import { Icon, Item } from 'semantic-ui-react';
 
 const CourseInfo = (props) => (
   <Item.Group>
