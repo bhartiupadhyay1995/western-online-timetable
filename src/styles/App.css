@@ -1,0 +1,7 @@
+.App .hide{
+    display: none;
+}
+
+.App .show{
+    display: block;
+}

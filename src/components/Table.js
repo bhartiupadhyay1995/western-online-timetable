@@ -6,6 +6,9 @@ import CourseInfo from './CourseInfo';
 class TableInfo extends React.Component {
     renderContent(){
         if (this.props.subjects) {
+            if (this.props.subjects.length < 1) {
+                return <div className='no-results'>No Results Found</div>
+            }
             return this.props.subjects.map((subject) => {
                 return <div className="course-table" key={`${subject.subject}_${subject.catalog_nbr}`}>
                     <CourseInfo subjectInfo={`${subject.subject} ${subject.catalog_nbr} - ${subject.className}`} description={subject.catalog_description}/>
@@ -38,10 +41,10 @@ class TableInfo extends React.Component {
                                 <Table.Cell textAlign='center'>{subject.course_info[0].start_time}</Table.Cell>
                                 <Table.Cell textAlign='center'>{subject.course_info[0].end_time}</Table.Cell>
                                 <Table.Cell textAlign='center'>{subject.course_info[0].days.toString()}</Table.Cell>
-                                <Table.Cell textAlign='center'>{subject.course_info[0].instructors.toString()}</Table.Cell>
+                                <Table.Cell textAlign='center'>{subject.course_info[0].instructors.length > 0 ? subject.course_info[0].instructors.toString() : 'Not Assigned'}</Table.Cell>
                                 <Table.Cell textAlign='center'>{subject.course_info[0].enrl_stat === 'Not full' ? <Icon color='green' name='checkmark' size='large' /> : <Icon color='red' name='cross' size='large' />}</Table.Cell>
                                 <Table.Cell textAlign='center'>{subject.course_info[0].campus}</Table.Cell>
-                                <Table.Cell className='course-desc'>{subject.course_info[0].descr}</Table.Cell>
+                                <Table.Cell className='course-desc'>{subject.course_info[0].descr ? subject.course_info[0].descr : 'Not Available'}</Table.Cell>
                             </Table.Row>
                         </Table.Body>
                     </Table>
@@ -51,10 +54,6 @@ class TableInfo extends React.Component {
                 </div>;
             })
         }
-
-        // if (!this.props.subjects) {
-        //     return <div>Loading....</div>
-        // }
     }
 
     render() {

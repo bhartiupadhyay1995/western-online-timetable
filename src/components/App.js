@@ -6,14 +6,23 @@ import CourseInfo from './CourseInfo';
 import PaginationComponent from './pagination';
 import Search from "./Search";
 import getSchedule from '../service';
+import ShimmerLoader from './Loader';
+
 
 class App extends React.Component{
-    state = { sujectResp: '' , paginationInfo: ''};
+    query = {};
 
-     getSchedule = async (subjQuery) =>{
-        const resp = await getSchedule(subjQuery);
-        this.setState({ sujectResp: resp.data.data.result })
-        this.setState({ paginationInfo: resp.data.data.meta })
+    state = { sujectResp: '' , paginationInfo: '', loading: false};
+
+     getSchedule = async (subjQuery, page) => {
+        this.query =  subjQuery;
+        this.setState({loading: true})
+        const resp = await getSchedule(subjQuery, page);
+        this.setState({ sujectResp: resp.data.data.result,  paginationInfo: resp.data.data.meta, loading: false})
+    }
+
+    handlePagination = (page)=>{
+        this.getSchedule(this.query, page);
     }
 
     render(){
@@ -23,8 +32,9 @@ class App extends React.Component{
                 <InfoHead/>
                 <Search onSubmit = {this.getSchedule}/>
                 <CourseInfo/>
+                <ShimmerLoader loading={this.state.loading}/>
                 <TableInfo subjects={this.state.sujectResp}/>
-                <PaginationComponent pageInfo={this.state.paginationInfo}/>
+                <PaginationComponent pageInfo={this.state.paginationInfo} onChange={this.handlePagination}/>
             </div>
         );
     }

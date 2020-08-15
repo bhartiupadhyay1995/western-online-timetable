@@ -5,53 +5,77 @@
 .column {
     width: 50%;
 }
-    .ui.grid {
-        margin-top: -1rem;
-        margin-bottom: -1rem;
-        margin-left: -1rem;
-        margin-right: -1rem;
-        border: 2px solid rgb(87, 32, 87);
-        border-radius: 4px;
-        background: #72405a;
+.ui.grid {
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border: 2px solid rgb(87, 32, 87);
+    border-radius: 4px;
+    background: #72405a;
 
-    }
+}
 
-    .column {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
+.column {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
 
-    .ui.segment:last-child {
-        margin-bottom: 0em;
-    }
+.ui.segment:last-child {
+    margin-bottom: 0em;
+}
 
-    .ui.segment:first-child {
-        margin-top: 0em;
-    }
+.ui.segment:first-child {
+    margin-top: 0em;
+}
 
-    .ui.segment {
-        font-size: 1rem;
-    }
+.ui.segment {
+    font-size: 1rem;
+}
 
-    .ui.segment {
-        position: relative;
-        background: #FFFFFF;
-        -webkit-box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
-        box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
-        margin: 1rem 0em;
-        padding: 1em 1em;
-        border-radius: 0.28571429rem;
-        border: 1px solid rgba(34, 36, 38, 0.15);
-    }
+.ui.segment {
+    position: relative;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
+    box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
+    margin: 1rem 0em;
+    padding: 1em 1em;
+    border-radius: 0.28571429rem;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+}
 
-  
+.ui.teal.labeled.icon.button{
+text-align: center;
+margin-left: auto;
+margin-right: auto
 
-      .ui.teal.labeled.icon.button{
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto
-       
-      }
+}
 
+.ui.form{
+    padding: 25px;
+}
+.ui.grid.column{
+    width: 100% !important;
+    margin: 20px 10px;
+    background: #e5eaff;
+    border-color: #d7d7ff;
+    color: #4e4e4e;
+}
 
+.ui.form .row button{
+    background: #4f2683;
+    width: 200px;
+}
+.ui.checkbox{
+    margin-right: 10px;
+}
+.ui.labeled.icon.button, .ui.labeled.icon.buttons .button{
+    padding-left: 0!important;
+    padding-right: 0!important;
+    letter-spacing: 1px;
+}
+
+.ui.labeled.icon.button, .ui.labeled.icon.buttons .button:hover{
+    background-color: #4f2683;
+}
       

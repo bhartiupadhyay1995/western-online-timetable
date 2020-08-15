@@ -3,7 +3,11 @@ import { Dropdown,Checkbox } from 'semantic-ui-react'
 import '../styles/search.css';
 import CardCarousel from "./CardCarousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import logo1 from '../images/Huron.jpg'
+import anylogo from '../images/western.jpg'
+import huronlogo from '../images/Huron-Logo.png'
+import westernlogo from '../images/westernLogo.png'
+import kingslogo from '../images/kings.png'
+import bresciaca from '../images/brescia.png'
 
 
 export default class Search extends React.Component {
@@ -30,12 +34,12 @@ export default class Search extends React.Component {
             start_timeInfo: '',
             end_timeInfo: '',
             courseCodeInfo: '',
-            
-
-        }
+            enrollInfo: true,
+            logos:[anylogo,kingslogo, huronlogo,westernlogo,bresciaca]
+        } 
     }
 
-
+    days = []
 
     //Get all the data from getTimetableSchema api to get dispalayed in search components
     componentDidMount() {
@@ -58,12 +62,12 @@ export default class Search extends React.Component {
                             value: component.Component_value,
 
                         })),
-                    campuses: json.timeTableInfoJson.Campus.map(campus => (
+                    campuses: json.timeTableInfoJson.Campus.map((campus,index) => (
                         {
                             key: campus.Campus_id,
                             text: campus.Campus_value,
                             value: campus.Campus_value,
-                            image: {avatar: true, src:logo1}
+                            image: {avatar: true, src:this.state.logos[index]}
 
                         })),
                     courseTypes: json.timeTableInfoJson.CourseType.map(courseType => (
@@ -125,32 +129,41 @@ export default class Search extends React.Component {
             });
     }
 
-    getCourseCode(subjectid) {
-
+    updateDays = (e) => {
+        this.days.push(e.target.value);
     }
 
-    getQuerydata = () => {
+    controlEnrollStatus = (e) => {
+        this.setState({enrollInfo: e.target.checked})
+    }
+
+    getQuerydata = (e) => {
+        e.preventDefault();
         const querydata = {
             subject: this.state.subjectInfo,
             start_time: this.state.start_timeInfo,
             end_time: this.state.end_timeInfo,
             campus: this.state.campuseInfo,
-            // days: timeTableInfoJson.day,
+            days:this.days,
             component: this.state.componentInfo,
             course_code: this.state.courseCodeInfo,
             designation: this.state.designationInfo,
-            // enrl_stat: "Not full"
+        }
+
+        if(!this.state.enrollInfo) querydata['enrl_stat'] = 'Full';
+        for(const property in querydata){
+            if(querydata[property] === '' || querydata[property].length === 0){
+                delete querydata[property];
+            }
         }
         this.props.onSubmit(querydata)
     }
 
     render() {
         const { subjects, components, campuses, courseTypes, designations, days, start_times, end_times, courseCodes } = this.state;
-        console.log(logo1);
         return (
             <form class="ui form">
-                <h1 class="ui center aligned header">Search</h1>
-                <div class="ui two column stackable grid container">
+                <div class="ui four column stackable grid container">
                     <div class="column">
                         <h4> Subject:</h4>
                         <Dropdown
@@ -246,24 +259,27 @@ export default class Search extends React.Component {
                     </div>
                     <div class="column">
                         <h4>Day of Class</h4>
-
                         {days.map((day, index) => (
-                            <Checkbox label={{ children: day }} />
+                            <Checkbox label={{ children: day }} 
+                            onChange={this.updateDays}
+                            value = {day}/>
                         ))}
                     </div>
 
                     <div class="column">
                         <div class="ui checkbox">
-                            <input type="checkbox" />
+                            <input type="checkbox"  
+                            onChange={this.controlEnrollStatus}
+                            checked={this.state.enrollInfo}
+                            />
                             <label>Show only courses open for registration.
                         *Note: may not be an accurate reflection during paper add/drop.</label>
                         </div>
                     </div>
 
                     <div class="row" >
-                        <button class="ui teal labeled icon button" onClick={this.getQuerydata}>Submit</button>
+                        <button class="ui teal labeled icon button" onClick={this.getQuerydata}>SUBMIT</button>
                     </div>
-
                 </div>
             </form >
 
