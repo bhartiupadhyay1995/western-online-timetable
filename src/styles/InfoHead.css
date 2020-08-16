@@ -6,7 +6,7 @@
     display: inline-flex;
     height: 280px;
     width: 30%;
-   
+    overflow: auto;
 }
 .info-head .ui.card:first-child{
     background: #efeff7;
@@ -41,4 +41,17 @@
 
 .info-head .extra{
     cursor: pointer;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 600px) {
+    .info-head .ui.card{
+        display: block;
+        height: auto;
+        width: 100%;
+    }
+    .info-head .ui.card:nth-child(2) {
+        margin: 0;
+    }
 }

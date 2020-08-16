@@ -7,6 +7,8 @@ import PaginationComponent from './pagination';
 import Search from "./Search";
 import getSchedule from '../service';
 import ShimmerLoader from './Loader';
+import List from './List';
+
 
 
 class App extends React.Component{
@@ -30,10 +32,10 @@ class App extends React.Component{
             <div className="App">
                 <Header/>
                 <InfoHead/>
+                <List/>
                 <Search onSubmit = {this.getSchedule}/>
-                <CourseInfo/>
                 <ShimmerLoader loading={this.state.loading}/>
-                <TableInfo subjects={this.state.sujectResp}/>
+                <TableInfo subjects={this.state.sujectResp}><CourseInfo/></TableInfo>
                 <PaginationComponent pageInfo={this.state.paginationInfo} onChange={this.handlePagination}/>
             </div>
         );

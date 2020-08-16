@@ -4,7 +4,7 @@ import React from "react";
 import CustomCardSlide from "./CustomCardSlide";
 import CustomDotGroup from "./CustomDotGroup";
 import logo1 from '../images/Huron.jpg'
-import logo2 from '../images/western.jpg'
+// import logo2 from '../images/western.jpg'
 
 
 const CardCarousel = () => (

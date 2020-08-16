@@ -1,7 +1,7 @@
 import React from "react";
 import { Dropdown,Checkbox } from 'semantic-ui-react'
 import '../styles/search.css';
-import CardCarousel from "./CardCarousel";
+// import CardCarousel from "./CardCarousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import anylogo from '../images/western.jpg'
 import huronlogo from '../images/Huron-Logo.png'
@@ -108,8 +108,7 @@ export default class Search extends React.Component {
     }
 
     handleOnChange = (e, data) => {
-        // this.setState({ subjectChange:data.value });
-        // console.log(this.state.subjectChange);
+        
         this.setState({ subjectInfo: data.value });
         fetch('http://localhost:8080/timetable/getCourseCode/' + data.value)
             .then(res => res.json())
@@ -162,9 +161,12 @@ export default class Search extends React.Component {
     render() {
         const { subjects, components, campuses, courseTypes, designations, days, start_times, end_times, courseCodes } = this.state;
         return (
-            <form class="ui form">
-                <div class="ui four column stackable grid container">
-                    <div class="column">
+            <form className="ui form">
+                
+                
+                <div className="ui four column stackable grid container">
+                    
+                    <div className="column">
                         <h4> Subject:</h4>
                         <Dropdown
                             placeholder='Choose Subject'
@@ -175,7 +177,7 @@ export default class Search extends React.Component {
                             onChange={this.handleOnChange}
                         />
                     </div>
-                    <div class="column">
+                    <div className="column">
                         <h4> Course Number:</h4>
                         <Dropdown
                             placeholder='Select Course Number'
@@ -188,7 +190,7 @@ export default class Search extends React.Component {
                         />
                     </div>
 
-                    <div class="column">
+                    <div className="column">
                         <h4> Course Suffix:</h4>
                         <Dropdown
                             placeholder='Select Course Suffix'
@@ -199,7 +201,7 @@ export default class Search extends React.Component {
                             onChange={(e, data) => this.setState({ designationInfo: data.value })}
                         />
                     </div>
-                    <div class="column">
+                    <div className="column">
                         <h4> Course Delivery:</h4>
                         <Dropdown
                             placeholder='Select Course Delivery'
@@ -210,7 +212,7 @@ export default class Search extends React.Component {
                             onChange={(e, data) => this.setState({ courseTypeInfo: data.value })}
                         />
                     </div>
-                    <div class="column">
+                    <div className="column">
                         <h4> Component</h4>
                         <Dropdown
                             placeholder='Select Component'
@@ -221,7 +223,7 @@ export default class Search extends React.Component {
                             onChange={(e, data) => this.setState({ componentInfo: data.value })}
                         />
                     </div>
-                    <div class="column">
+                    <div className="column">
                     <h4> Campus</h4>
                     {/* <CardCarousel /> */}
 
@@ -235,7 +237,7 @@ export default class Search extends React.Component {
                             onChange={(e, data) => this.setState({ campuseInfo: data.value })}
                         />
                     </div>
-                    <div class="column">
+                    <div className="column">
                         <h4> Start Time</h4>
                         <Dropdown
                             placeholder='Select Start Time'
@@ -246,7 +248,7 @@ export default class Search extends React.Component {
                             onChange={(e, data) => this.setState({ start_timeInfo: data.value })}
                         />
                     </div>
-                    <div class="column">
+                    <div className="column">
                         <h4> End Time</h4>
                         <Dropdown
                             placeholder='Select End Time'
@@ -257,17 +259,18 @@ export default class Search extends React.Component {
                             onChange={(e, data) => this.setState({ end_timeInfo: data.value })}
                         />
                     </div>
-                    <div class="column">
-                        <h4>Day of Class</h4>
+                    <div className="column">
+                        <h4>Day of className</h4>
                         {days.map((day, index) => (
                             <Checkbox label={{ children: day }} 
                             onChange={this.updateDays}
-                            value = {day}/>
+                            value = {day}
+                            key={day}/>
                         ))}
                     </div>
 
-                    <div class="column">
-                        <div class="ui checkbox">
+                    <div className="column">
+                        <div className="ui checkbox">
                             <input type="checkbox"  
                             onChange={this.controlEnrollStatus}
                             checked={this.state.enrollInfo}
@@ -277,8 +280,9 @@ export default class Search extends React.Component {
                         </div>
                     </div>
 
-                    <div class="row" >
-                        <button class="ui teal labeled icon button" onClick={this.getQuerydata}>SUBMIT</button>
+
+                    <div className="row" >
+                        <button className="ui teal labeled icon button" onClick={this.getQuerydata}>SUBMIT</button>
                     </div>
                 </div>
             </form >
