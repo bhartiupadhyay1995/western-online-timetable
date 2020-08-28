@@ -8,6 +8,7 @@ import huronlogo from '../images/Huron-Logo.png'
 import westernlogo from '../images/westernLogo.png'
 import kingslogo from '../images/kings.png'
 import bresciaca from '../images/brescia.png'
+import CourseCode from './CourseCode'
 
 
 export default class Search extends React.Component {
@@ -107,14 +108,13 @@ export default class Search extends React.Component {
 
     }
 
-    handleOnChange = (e, data) => {
-        
+    handleOnChange = (e, data) => {      
         this.setState({ subjectInfo: data.value });
-        fetch('http://localhost:8080/timetable/getCourseCode/' + data.value)
+        fetch('http://localhost:8080/timetable/getAllCourse')
             .then(res => res.json())
             .then(json => {
                 this.setState({
-                    courseCodes: json.course_codes.map(code => (
+                    courseCodes: json.coursecodes.map(code => (
                         {
                             key: code.course_code_id,
                             text: code.description + " " + code.course_code_id,
@@ -159,7 +159,7 @@ export default class Search extends React.Component {
     }
 
     render() {
-        const { subjects, components, campuses, courseTypes, designations, days, start_times, end_times, courseCodes } = this.state;
+        const { subjects, components, campuses, courseTypes, designations, days, start_times, end_times } = this.state;
         return (
             <form className="ui form">
                 
@@ -174,21 +174,10 @@ export default class Search extends React.Component {
                             search
                             selection
                             options={subjects}
-                            onChange={this.handleOnChange}
+                            // onChange={this.handleOnChange}
                         />
                     </div>
-                    <div className="column">
-                        <h4> Course Number:</h4>
-                        <Dropdown
-                            placeholder='Select Course Number'
-                            fluid
-                            search
-                            selection
-                            options={courseCodes}
-                            
-                            onChange={(e, data) => this.setState({ courseCodeInfo: data.value })}
-                        />
-                    </div>
+                    <CourseCode/>
 
                     <div className="column">
                         <h4> Course Suffix:</h4>
@@ -260,7 +249,7 @@ export default class Search extends React.Component {
                         />
                     </div>
                     <div className="column">
-                        <h4>Day of className</h4>
+                        <h4>Day of Class</h4>
                         {days.map((day, index) => (
                             <Checkbox label={{ children: day }} 
                             onChange={this.updateDays}

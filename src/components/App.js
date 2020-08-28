@@ -31,9 +31,9 @@ class App extends React.Component{
         return(
             <div className="App">
                 <Header/>
-                <InfoHead/>
                 <List/>
                 <Search onSubmit = {this.getSchedule}/>
+                <InfoHead/>
                 <ShimmerLoader loading={this.state.loading}/>
                 <TableInfo subjects={this.state.sujectResp}><CourseInfo/></TableInfo>
                 <PaginationComponent pageInfo={this.state.paginationInfo} onChange={this.handlePagination}/>
